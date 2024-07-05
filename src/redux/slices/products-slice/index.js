@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 import { getAllProducts } from './api-function'
 
-const initialState = {
+const initialState = { 
     isLoading: false,
     products: [],
     isError: false,
@@ -17,8 +17,9 @@ const productsSlice = createSlice({
             state.isLoading = true;
         })
         builder.addCase(getAllProducts.fulfilled, (state, action) => {
+            state.isLoading = false;
             state.products = action.payload
-        })
+        }) 
         builder.addCase(getAllProducts.rejected, (state, action) => {
             state.isError = true
             console.log('Error', action.payload);
@@ -27,4 +28,5 @@ const productsSlice = createSlice({
 
 })
 
-export default productsSlice.reducer;
+
+export default productsSlice.reducer;  
